@@ -3,33 +3,40 @@ import app from "../Firbase/firebase";
 
 export const AuthContext = React.createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children, history }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [edit, setEdit] = useState(false);
   const [id, setId] = useState("");
   const ref = app.firestore().collection("Posts");
+  const [loading, setLoading] = useState(false);
 
   const clearInput = () => {
     setInput("");
   };
 
   const addMessage = (data) => {
+    setLoading(true);
     ref
       .doc(data.id)
       .set(data)
       .then(() => {
         setInput("");
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   };
   const deleteMessage = (id) => {
+    setLoading(true);
     ref
       .doc(id)
       .delete()
+      .then(() => {
+        setLoading(false);
+      })
       .catch((err) => {
         alert(err);
       });
@@ -41,6 +48,7 @@ export const AuthProvider = ({ children }) => {
     setId(id);
   };
   const getMessages = () => {
+    setLoading(true);
     ref.onSnapshot((querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
@@ -48,16 +56,19 @@ export const AuthProvider = ({ children }) => {
       });
       const data = items.filter((item) => item.by === currentUser.email);
       setMessages(data);
+      setLoading(false);
     });
   };
 
   const updateMessage = (data) => {
+    setLoading(true);
     ref
       .doc(data.id)
       .update({ message: data.message })
       .then(() => {
         setInput("");
         setEdit(false);
+        setLoading(false);
       })
       .catch((err) => {
         alert(err);
@@ -65,7 +76,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    app.auth().onAuthStateChanged(setCurrentUser);
+    app.auth().onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
   }, []);
 
   return (
@@ -83,6 +96,8 @@ export const AuthProvider = ({ children }) => {
         onClickEdit,
         id,
         edit,
+        loading,
+        setLoading,
       }}
     >
       {children}

@@ -20,6 +20,7 @@ function Home(props) {
     onClickEdit,
     edit,
     id,
+    loading,
   } = useContext(AuthContext);
 
   useEffect(() => {
