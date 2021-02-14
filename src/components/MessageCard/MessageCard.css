@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+
+.message__main {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: white;
+  font-family: "Libre Baskerville", serif;
+  font-size: 15px;
+}
+
+.by__heading {
+  padding: 10px 8px;
+  display: flex;
+  background-color: #1e1e1e;
+  color: white;
+  border-radius: 10px;
+}
+
+.message__content {
+  padding: 8px;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  min-height: 50px;
+  height: 100%;
+}
+.message__content p {
+  word-break: break-all;
+}
+.update__delete__buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+.update__delete__buttons .deleteBtn {
+  margin-right: 20px !important;
+  background-color: rgb(158, 19, 19) !important;
+}
+span {
+  margin-right: 7px;
+  font-weight: bold;
+}
+@media only screen and (max-width: 500px) {
+  .message__main {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,13 @@
+@media only screen and (max-width: 450px) {
+  .submit__btn {
+    font-size: 10px !important;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .submit__btn {
+    font-size: 8px !important;
+  }
+  .login {
+    font-size: 12px;
+  }
+}

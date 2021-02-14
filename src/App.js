@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import Error from "./pages/Error";
+import Home from "./pages/Home/Home";
+import Signup from "./pages/Signup/Signup";
+import Login from "./pages/Login/Login";
+import Error from "./pages/Error/Error";
 import { AuthProvider } from "./context/context";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
