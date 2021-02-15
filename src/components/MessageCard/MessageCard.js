@@ -9,6 +9,9 @@ function MessageCard(props) {
   return (
     <div className="message__main">
       <div className="by__heading">
+        <div className="position">
+          <span className="pos">{props.pos + 1}</span>
+        </div>
         <span>By:</span>
         <p>{props.data.by}</p>
       </div>

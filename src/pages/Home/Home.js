@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import app from "../../Firbase/firebase";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/context";
 import { v1 as uuid } from "uuid";
 import NavBar from "../../components/Navbar/Navbar";
@@ -87,11 +86,12 @@ function Home(props) {
             </div>
           </div>
           <div className="user__cards">
-            {messages.map((item) => {
+            {messages.map((item, pos) => {
               return (
                 <MessageCard
                   key={item.id}
                   data={item}
+                  pos={pos}
                   deleteMessage={deleteMessage}
                   onClickEdit={onClickEdit}
                 />
